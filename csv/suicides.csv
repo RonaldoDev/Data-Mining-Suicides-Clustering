@@ -1,4 +1,4 @@
-ANO,raca,sexo,estado_civil,Faixa_etaria,escolaridade,Profissao,IDH,mesoregiao,microregiao,municipio,motivo,local_ocorrencia,local_cid
+ano,raca,sexo,estado_civil,Faixa_etaria,escolaridade,Profissao,IDH,mesoregiao,microregiao,municipio,motivo,local_ocorrencia,local_cid
 2016,Branca,Masculino,Uniao Estavel,19-29,4-7 anos,Trabalhadores de Industria,Alto,Oeste Catarinense,Xanxere,Xaxim,S06   Traum intracraniano,Domicilio,X74.0 Residencia
 2016,Branca,Masculino,Casado,40-49,4-7 anos,Trabalhadores do Campo,Alto,Vale do Itajai,Rio do Sul,Salete,T71   Asfixia,Outros,X70.0 Residencia
 2016,Parda,Feminino,Separado Judicialmente,60-69,4-7 anos,Trabalhadores de Industria,Alto,Grande Florianopolis,Florianopolis,Palhoca,T71   Asfixia,Domicilio,X70.0 Residencia
