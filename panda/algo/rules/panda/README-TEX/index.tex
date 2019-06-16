@@ -1,0 +1,429 @@
+\documentclass{article}
+
+
+\usepackage{graphicx}
+%\graphicspath{{./figs/,.}}
+
+\usepackage[cmex10]{amsmath}
+
+
+\usepackage{url}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% sets
+\newcommand{\set}[1]  {\ensuremath{\left\lbrace #1 \right\rbrace}\xspace}
+\newcommand{\seq}[1]  {\ensuremath{\left\langle #1 \right\rangle}\xspace}
+\newcommand{\pair}[1] {\ensuremath{\left( #1 \right)}\xspace}
+
+
+%%%%%%%%%%%%%%%%%%
+%% symbols
+
+\newcommand{\db}      {\ensuremath{\mathcal{D}}\xspace}  %% dataset
+\newcommand{\vb}      {\ensuremath{B\hspace{-3pt} M}\xspace} %% vertical bitmap
+\newcommand{\items}   {\ensuremath{\mathcal{I}}\xspace}  %% singletons
+\newcommand{\freq}    {\ensuremath{\mathcal{L}}\xspace}  %% frequents
+\newcommand{\cand}    {\ensuremath{\mathcal{C}}\xspace}  %% candidates
+\newcommand{\valid}   {\ensuremath{\mathcal{R}}\xspace}  %% valid
+%% \newcommand{\maxs}    {\ensuremath{\mathcal{M}}\xspace}  %% maximals
+\newcommand{\closed}  {\ensuremath{\mathcal{C}}\xspace}  %% closed
+\newcommand{\supp}    {\ensuremath{\sigma}\xspace}        %% support
+\newcommand{\ruleconf}    {\ensuremath{\gamma}\xspace}       %% support
+\newcommand{\suppd}   {\ensuremath{\sigma_\db}\xspace}   %% support
+\newcommand{\minsupp} {\ensuremath{\overline{\sigma}}\xspace}  %% minimum support
+\newcommand{\minconf} {\ensuremath{\overline{\conf}}\xspace}  %% minimum support
+\newcommand{\maxmem}  {\ensuremath{{\widehat{M}}}\xspace}
+
+\newcommand{\constraint}    {C\xspace}
+\newcommand{\mono}          {\ensuremath{\constraint_M}\xspace}
+\newcommand{\anti}          {\ensuremath{\constraint_{AM}}\xspace}
+\newcommand{\cmono}         {\ensuremath{\constraint_{CM}}\xspace}
+\newcommand{\canti}         {\ensuremath{\constraint_{CAM}}\xspace}
+\newcommand{\succinct}      {\ensuremath{\constraint_{S}}\xspace}
+\newcommand{\succinctmono}  {\ensuremath{\constraint_{SM}}\xspace}
+\newcommand{\succinctanti}  {\ensuremath{\constraint_{SAM}}\xspace}
+\newcommand{\loose}         {\ensuremath{\constraint_{LAM}}\xspace}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% algorithms
+\usepackage{xspace}
+\newcommand{\myalgostyle}[1]  {{\sc #1}\xspace}
+
+%% my algorithms
+\newcommand{\dci}          {\myalgostyle{DCI}}
+\newcommand{\kdci}         {\myalgostyle{k-DCI}}
+\newcommand{\dciclosed}    {\myalgostyle{DCI-Closed}}
+\newcommand{\mcore}        {\myalgostyle{MT-Closed}}
+\newcommand{\dclosed}      {\myalgostyle{D-Closed}}
+\newcommand{\ooc}          {\myalgostyle{OOC-Closed}}
+\newcommand{\conquest}     {\myalgostyle{ConQueSt}}
+\newcommand{\panda}        {\myalgostyle{PaNDa}}
+\newcommand{\pandaplus}        {\myalgostyle{PaNDa$^+$}}
+\newcommand{\pandapluss}        {{\sc PaNDa+}}
+
+%% other
+\newcommand{\kmeans}    {\myalgostyle{K-Means}}
+\newcommand{\fihc}    {\myalgostyle{FIHC}}
+\newcommand{\hyper}    {\myalgostyle{Hyper}}
+\newcommand{\hyperplus}    {\myalgostyle{Hyper+}}
+\newcommand{\apriori}      {\myalgostyle{Apriori}}
+\newcommand{\eclat}        {\myalgostyle{Eclat}}
+\newcommand{\declat}       {\myalgostyle{dEclat}}
+\newcommand{\fpgrowth}     {\myalgostyle{FP-Growth}}
+\newcommand{\partition}    {\myalgostyle{Partition}}
+\newcommand{\sampling}     {\myalgostyle{Sampling}}
+\newcommand{\diskmine}     {\myalgostyle{DiskMine}}
+\newcommand{\carpenter}    {\myalgostyle{Carpenter}}
+\newcommand{\aclose}       {\myalgostyle{A-Close}}
+\newcommand{\pascal}       {\myalgostyle{Pascal}}
+\newcommand{\charm}        {\myalgostyle{Charm}}
+\newcommand{\closet}       {\myalgostyle{Closet}}
+\newcommand{\fpclose}      {\myalgostyle{FP-Close}}
+\newcommand{\closetplus}   {\myalgostyle{Closet+}}
+\newcommand{\parcsp}       {\myalgostyle{Par-CSP}}
+\newcommand{\dic}          {\myalgostyle{DIC}}
+\newcommand{\lcm}          {\myalgostyle{LCM}}
+\newcommand{\dclub}        {\myalgostyle{D-CluB}}
+\newcommand{\ficm}         {\myalgostyle{Fic-M}}
+\newcommand{\fica}         {\myalgostyle{Fic-A}}
+\newcommand{\capsucc}      {\myalgostyle{CAP}}
+\newcommand{\dualminer}    {\myalgostyle{Dual-Miner}}
+\newcommand{\exante}       {\myalgostyle{ExAnte}}
+\newcommand{\examiner}     {\myalgostyle{ExAMiner}}
+\newcommand{\examinerlam}  {\myalgostyle{ExAMiner-Lam}}
+\newcommand{\cd}           {\myalgostyle{CD}}
+\newcommand{\dfp}          {\myalgostyle{DFP}}
+\newcommand{\idd}          {\myalgostyle{IDD}}
+\newcommand{\dd}           {\myalgostyle{DD}}
+\newcommand{\hd}           {\myalgostyle{HD}}
+\newcommand{\krimp}           {\myalgostyle{Krimp}}
+\newcommand{\asso}           {\myalgostyle{Asso}}
+
+%% datasets
+\newcommand{\mydatasetstyle}[1]  {{\sf #1}\xspace}
+
+\newcommand{\chess}        {\mydatasetstyle{Chess}}
+\newcommand{\mushroom}     {\mydatasetstyle{Mushroom}}
+\newcommand{\pumsb}        {\mydatasetstyle{Pumsb}}
+\newcommand{\pumsbs}       {\mydatasetstyle{Pumsb*}}
+\newcommand{\census}       {\mydatasetstyle{USCensus1990}}
+\newcommand{\accidents}    {\mydatasetstyle{Accidents}}
+\newcommand{\connect}      {\mydatasetstyle{Connect}}
+\newcommand{\kosarak}      {\mydatasetstyle{Kosarak}}
+\newcommand{\retail}       {\mydatasetstyle{Retail}}
+\newcommand{\webdocs}      {\mydatasetstyle{WebDocs}}
+\newcommand{\twog}         {\mydatasetstyle{Synth2GB}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% theorems and othe environments
+
+\usepackage{amssymb}
+
+%%\usepackage{amsthm}
+%% \newtheorem{theorem}{Theorem}
+%%\newtheorem{lemma}{Lemma}
+%%\newtheorem{definition}{Definition}
+\newtheorem{problem}{Problem}
+%%\newtheorem{example}{Example}
+%% \newtheorem{proof}{Proof}
+%% \newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{question}{Question}
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% % Notes
+
+\newcommand{\hide}[1]{}
+
+
+\usepackage[usenames,dvipsnames]{color}
+
+\newcommand{\frameit}[2]{
+    \begin{center} {\color{BrickRed} \framebox[.98\columnwidth][l]{
+    \begin{minipage}{.95\columnwidth} \inred{#1}: {\sf\color{Black}#2}
+    \end{minipage} }\\ } \end{center} }
+\newcommand{\inred}[1]{{\color{BrickRed}\sf\textbf{\textsc{#1}}}}
+\newcommand{\ingrey}[1]{{\color{Gray}{\textsf{#1}}}}
+
+\newcommand{\mynote}[1]{\frameit{Note}{#1}}
+\newcommand{\mytodo}[1]{\frameit{To-do}{#1}}
+\newcommand{\mydecision}[1]{\frameit{Decision}{#1}}
+\newcommand{\myinote}[1]{\inred{$<<<${#1}$>>>$}}
+\newcommand{\mypaperstructure}[1]{\noindent\ingrey{\hrulefill\ \S\ #1\ \hrulefill}}
+
+\usepackage{colortbl}
+\newcommand{\newstuff}[1]{{\color{RoyalBlue} #1}}
+
+  
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% small example 
+\newcommand{\exsmall}[1]{{\bf Example:} #1}
+
+%% custom labelled enumerations
+\usepackage{enumerate}
+
+
+
+
+
+\renewcommand\newstuff[1]{#1}
+
+
+
+\begin{document}
+\title{\pandaplus:\\ A unifying framework for mining approximate top-$k$ binary patterns} %%~\\ and their evaluation}
+
+\author{Claudio Lucchese, HPC Lab., ISTI-CNR, Pisa, Italy \\ 
+Salvatore Orlando, DAIS - Universit\`{a} Ca' Foscari Venezia, Italy \\
+Raffaele Perego, HPC Lab., ISTI-CNR, Pisa, Italy}
+\date{\small Dec. 2013}
+\maketitle
+
+
+{\bf Abstract.}  
+A major mining task for binary matrixes is the extraction of  approximate top-$k$ patterns that are able to concisely describe the input data.
+The top-$k$ pattern discovery problem is commonly stated as an optimization one, where 
+the goal is to minimize a given cost function, e.g., the accuracy of the data description. 
+In this work, we review several greedy algorithms,
+and  discuss \pandaplus, 
+an  algorithmic framework able to optimize different cost functions 
+generalized into a unifying formulation.
+We evaluated the goodness of the algorithm by measuring the quality of the extracted patterns.
+We adapted standard quality measures to assess the capability of the algorithm to discover both the
+items and transactions of the patterns embedded in the data.
+The evaluation was conducted on synthetic data, where patterns were artificially embedded,
+and on real-world text collection, where each document is labeled with a topic.
+\newstuff{Finally, in order to qualitatively evaluate the usefulness of the discovered patterns, we 
+exploited \pandaplus to detect overlapping communities in a bipartite network.} 
+The results show that \pandaplus is able to discover high-quality patterns in both synthetic and real-world datasets.
+
+If you want more information about \pandaplus, please check the full paper~\cite{pandaplus}. If you want to download the source code, go to the 
+{\em "Implementation source code and usage"} section below~\ref{sec:usage}. If you use this software, please cite~\cite{pandaplus} in your work.
+
+\begin{figure}
+\begin{tabular}{cc}
+\includegraphics{dblp_graph_x_0_5_1_0_1_0.png} &
+\includegraphics{dblp_graph_x_0_5_0_5_0_8.png} \\
+(a): $\epsilon_{r} = 1.0$,\ $\epsilon_{c}=1.0$ & (b): $\epsilon_{r} = 0.5$,\ $\epsilon_{c}=0.8$ \\
+\multicolumn{2}{c}{\caption{\label{fig:DBLP} the top-16 patterns mined by \pandaplus~$J_{E}$ 
+from the DBLP database with different noise thresholds $\epsilon_{r}$ 
+and $\epsilon_{c}$.}}
+\end{tabular}
+\end{figure}
+
+\section{Patterns extracted from a real social network}
+
+We discuss the results of using \pandaplus as a tool to identify communities from bipartite graphs extracted from a real-wold dataset.
+To this end, we mined a dump of the DBLP database, 
+spanning a period that goes from January 2008 to July 2013. 
+We built a bipartite graph of \emph{authors} and \emph{publication venues}, where 
+an edge links an author $a$ to a publication venue $v$ \emph{iff} $a$ published at 
+least a paper at conference/journal $v$ regardless the year of publication.
+We discarded authors who published in less than 5 venues, and 
+venues that hosted less than 40 distinct authors. 
+We also removed the venue ``Computing Research Repository'' (CoRR)\hide{\footnote{\url{http://arxiv.org/corr/home}}}, which is a free online multi-disciplinary repository
+and it is not useful to our purpose of detecting topical communities.
+From this bipartite graph, we generated the incidence binary matrix \db, where  rows are authors and columns are venues.
+The resulting binary matrix $\db$ includes $N = 112,261$ authors, and $M = 4,283$ venues.
+
+We run \pandaplus $J_E$ (with $R=20$ and correlation item ordering) by varying 
+the two maximum noise thresholds $\epsilon_{r}$ and $\epsilon_{c}$.
+After testing several combinations, we observed that all of them are very useful for studying, inspecting and understanding the
+diverse overlapping social communities present in the bipartite DBLP graph. Small noise thresholds generate small communities covering a very specific topic.
+By increasing the noise thresholds, it is possible to analyze how the communities merge together into wider topics.
+Due to space constraints, we only discuss two parameter configurations: 
+(i)  $\epsilon_{r}=1.0$, $\epsilon_{c}=1.0$,  and (ii)  $\epsilon_{r}=0.5$, $\epsilon_{c}=0.8$.
+In the case \emph{(i)} we do not give any constraint over the amount of noise contained in each pattern, so that the noise is only limited by cost function $J_E$.
+In the case \emph{(ii)} instead, any extracted pattern should contain authors that published in at least  50\% of the pattern's venues,
+and venues that contain at least 20\% of the pattern's authors.
+The setting \emph{(ii)} of the two parameters is reasonable, considering that  
+there are many more authors than venues. 
+The algorithms \asso and \hyperplus were not able to complete within one hour and therefore they are not discussed here.
+This is because their implementation does not handle efficently large and sparse data.
+
+It is worth remarking 
+that DBLP does not always disambiguate homonymous authors.
+As a result, \pandaplus extracted a pattern with more than 50  venues  and as little as 200 authors.
+By manual inspection, we found that the venues of the pattern covered very different topics, and that authors has common Chinese surnames (e.g., Li, Liu, Wang, Yang, Zhang, etc.).
+This pattern was clearly due to the presence of homonymous authors, and we thus did not consider it in the following discussion.
+
+
+Fig.~\ref{fig:DBLP} shows the top-16 patterns extracted by \pandaplus $J_E$.
+Each pattern is represented by a node, whose label was manually chosen according to the venues composing it.
+The size of the node is proportional to the number of authors contained, 
+whereas the number of venues is shown between parentheses.
+The sharing of authors among patterns is instead captured by the thickness of the edges.
+Finally, nodes are placed according to their extraction order, the first being the rightmost and then proceeding counter-clock wise.
+
+When using the larger noise thresholds of case \emph{(i)}, see Fig.~\ref{fig:DBLP}a,
+the extracted patterns are larger. 
+\emph{Communications} is the largest pattern, and it has a significant sharing of authors with \emph{Networking}.
+Despite the strong sharing of authors, there is only one overlapping venue (ICC). 
+By inspecting the patterns' venues in Table~\ref{tab:venue-clusters}, the reader can appreciate  that although the topics of the two patterns are related, they are separated enough: the former is concerned with low level signal transmissions, whereas the latter mainly regards network protocols.
+Other strong links are present between {\em Operational Research} and {\em Neural Networks} and between {\em Pattern Recognition} and {\em Communications}.
+
+Interestingly enough, the IEEE TKDE journal falls into the \emph{Data Mining \& Management} pattern.
+The cluster of venues appears to be very reasonable, including some information retrieval conferences (e.g., WSDM).
+Also, it contains the most influential authors in the Data Mining field according to Microsoft Academic Search: Jiawei Han, Philip S. Yu, Rakesh Agrawal, Christos Faloutsos, Hans-Peter Kriegel, Eamonn J. Keogh, George Karypis, and Heikki Mannila.
+Finally,  readers of this journal may appreciate the quality of the venue groups \emph{Algorithmica} and 
+\emph{High Performace Computing}.
+
+Fig.~\ref{fig:DBLP}b shows the top-16 patterns extracted with the less tolerant configuration of case \emph{(ii)}. 
+Due to space constraints, we do not illustrate in detail their venue composition.
+We observe, that the extracted patterns have a finer granularity.
+The previous {\em Communications} related clusters are now separated in more focused groups:
+ \emph{Wireless Networks}, which includes ICC,  VTC Spring, GLOBECOM,  and WCNC, 
+\emph{Communications}, made up of ICC, GLOBECOM, IEEE Communications Letters, and 
+IEEE Transactions on Communications,  
+\emph{Vehicular Technology}, composed of CC, PIMRC,  IEEE Transactions on Vehicular Technology and IEEE Transactions on Wireless Communications, and, finally, 
+\emph{Signal Processing}, which is composed of ICASSP and IEEE Transactions on Signal Processing.
+
+Another interesting example is given by the {\em Pattern Recognition} cluster, which is now separated from the 3 related sub-fields of {\em Signal Processing}, {\em Audio Processing} and {\em Image Processing}, each of them having a large author overlap with the new more focused {\em Pattern Recognition} pattern. Note is also well connected to {\em Wireless Networks}.
+
+Finally, note that in both Fig.~\ref{fig:DBLP}a and Fig.~\ref{fig:DBLP}b there is a pattern labeled by \emph{IEICE}, composed of a single venue, namely IEICE Transactions, which contains an abnormal number of authors (about \!6,000). It is a publication of an Asiatic organization which mainly contains papers on electronics and communications.
+ 
+
+
+
+\begin{table*}
+\small
+\begin{tabular}{l l c}
+\multicolumn{3}{c}{\caption{\label{tab:venue-clusters}Some groups of publication venues referring to Fig. \ref{fig:DBLP}a.}} \\
+\hline
+{\bf Topic (\#Venues)} & {\bf Group of Publication Venues} & {\bf No. of Authors}\\
+\hline
+Communication (15)  
+&
+ICC, IEEE Transactions on Signal Processing,  VTC Fall,  VTC Spring, IEICE Transactions, & 6373 \\
+&   EURASIP J. Adv. Sig. Proc.,  ICASSP,  IEEE T. Vehicular Technology,  WCNC,  PIMRC, & \\
+&  IEEE Transactions on Wireless Communications,  GLOBECOM,  & \\
+&   IEEE Communications Letters, EURASIP J. Wireless Comm. and Networking,  & \\
+& IEEE Transactions on Communications & \\
+%
+\hline
+Wireless Networks (12)
+&
+EURASIP J. Wireless Comm. and Networking,  IEEE Transactions on Communications,  &
+2524
+\\
+&    VTC Fall,  VTC Spring,IEEE Communications Letters, WCNC,      & \\
+&   Wireless Personal Communications, PIMRC,  IEEE Transactions on Wireless Communications,  & \\
+&   GLOBECOM,  Wireless Sensor Network, IEEE T. Vehicular Technology & \\
+% %
+\hline
+Networking (9)
+&
+ICC,  IEEE Trans. Parallel Distrib. Syst.,   IEEE Journal on Selected Areas in Communications,
+&
+2509
+\\
+&   Computer Networks, Computer Communications, Int. Journal of Network Management,  & \\
+& IEEE Trans. Mob. Comput.,  IEEE/ACM Trans. Netw.,  INFOCOM & \\
+%
+\hline
+Data Mining \& 
+& CIKM,  AAAI,  EDBT,  SIGIR,  ICDE,  SIGMOD Conference,  WSDM,  ICDM,  MLDM,    &
+2178
+\\
+Management (13) & WWW (Companion Volume),  PVLDB, IEEE Trans. Knowl. Data Eng.,  KDD & \\
+%
+\hline
+Algorithmica (15)
+&
+Electronic Colloquium on Computational Complexity (ECCC),  Inf. Process. Lett.,  ISAAC,  &
+1644
+\\
+&   Theory Comput. Syst., FOCS,  STACS,  ESA,  Theor. Comput. Sci.,  APPROX-RANDOM,    & \\
+&   STOC,  SODA, ACM Transactions on Algorithms, SIAM J. Comput.,  ICALP (1),   & \\
+& Algorithmica & \\
+% %
+\hline
+High Performace 
+&
+IEEE Trans. Computers,  IPDPS,  IPDPS Workshops,   MASCOTS,  
+&
+1106
+\\
+Computing (11) & IEEE Trans. Parallel Distrib. Syst.,  SC,  J. Parallel Distrib. Comput.,  ICPP,  CCGRID,   & \\
+& ICPADS, Concurrency and Computation: Practice and Experience & \\
+\hline
+\end{tabular}
+\end{table*}
+
+\section{Implementation source code and usage}
+\label{sec:usage}
+
+The source code of the algorithm can be downloaded here: \url{http://hpc.isti.cnr.it/~claudio/downloads/panda.tgz}.
+The input format is the usual ascii format of FIMI competition. Below, the options of the algorithm implemetation.
+
+\begin{verbatim}
+# ** PaNDa Copyright (C) 2009 Claudio Lucchese
+# ** Error-tolerant frequent itemsets discovery.
+
+usage: ./panda
+       -d <dataset>       input data file (MANDATORY)
+       -k <#patterns>     -1:infinity, def:-1
+       -s <strategy>      f - for frequency, c - for child frequency,
+                          o - for correlated, h - for charm
+                          def:f
+       -r <# rnd iter>    0: no randomness, def:0
+       -c <cost f>        1 - norm 1, w - norm s with weight,
+                          2 - norm 2,
+                          x - typed xor, n - naive xor
+                          def:1
+       -w <weight>        weight to be used for the "-c w" option
+       -o <output>        def: non output file
+       -a <data struct>   f - for fptree, v - for full vertical
+                          def:f
+       -y                 row tolerance ratio
+       -t                 column tolerance ratio
+       -v                 verbose mode. Outputs cost per iteration.
+\end{verbatim}
+
+\bibliographystyle{plain}
+
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{#1}
+\csname url@samestyle\endcsname
+\providecommand{\newblock}{\relax}
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\BIBentrySTDinterwordspacing}{\spaceskip=0pt\relax}
+\providecommand{\BIBentryALTinterwordstretchfactor}{4}
+\providecommand{\BIBentryALTinterwordspacing}{\spaceskip=\fontdimen2\font plus
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus
+  \fontdimen4\font\relax}
+\providecommand{\BIBforeignlanguage}[2]{{%
+\expandafter\ifx\csname l@#1\endcsname\relax
+\typeout{** WARNING: IEEEtran.bst: No hyphenation pattern has been}%
+\typeout{** loaded for the language `#1'. Using the pattern for}%
+\typeout{** the default language instead.}%
+\else
+\language=\csname l@#1\endcsname
+\fi
+#2}}
+\providecommand{\BIBdecl}{\relax}
+\BIBdecl
+
+\bibitem{pandaplus}
+C.~Lucchese, S.~Orlando, R.~Perego, ``A unifying framework for mining approximate top-$k$ binary patterns,'' \emph{to appear on IEEE Transaction of Knowledge and Data engineering}, 2013. \url{http://doi.ieeecomputersociety.org/10.1109/TKDE.2013.181}.
+
+\bibitem{sdm10}
+C.~Lucchese, S.~Orlando, and R.~Perego, ``Mining top-k patterns from binary
+  datasets in presence of noise,'' in \emph{Proc. of International Conference on Data Mining},
+  SIAM, 2010, pp. 165--176.
+
+\bibitem{sac10}
+C.~Lucchese, S.~Orlando, and R.~Perego, ``A generative pattern model for mining
+  binary datasets,'' in \emph{Proc. of Symposium on Applied Computing}, ACM,
+  2010, pp. 1109--1110.  
+
+\end{thebibliography}
+
+% that's all folks
+\end{document}
