@@ -1,0 +1,6 @@
+all:
+	htlatex README.tex css.cfg
+
+deploy:
+
+clean:
