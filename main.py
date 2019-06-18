@@ -4,6 +4,8 @@ import numpy as np
 import random as rd
 import pandas
 
+import elbow
+
 
 FILENAME = 'suicides.csv'
 CLUSTERS = 12
@@ -50,6 +52,8 @@ scaler = preprocessing.MinMaxScaler()
 
 data = scaler.fit_transform(dataNumeric)
 
+# plota o elbow method
+# elbow.plotDistortion(data)
 
 # faz a clusterização usando k-means
 model = KMeans(n_clusters=CLUSTERS)
@@ -66,22 +70,16 @@ centroids = encoder.inverse_transform(centroidsScaler)
 
 df_centroids = pandas.DataFrame(centroids, columns=dataFrame.columns.values)
 
+# imprime os resultados dos centroides e da distribuição dos clusters
+print(df_centroids)
 
-# print(df_centroids)
-
-# dataFrame['cluster'] = model.labels_
-
-# print(dataFrame.values)
-
-
-# print(dataFrame.groupby(dataFrame['cluster'],as_index=False).size())
-
-# print(dataFrame)
+print(dataFrame.groupby(model.labels_, as_index=False).size())
 
 print(model.inertia_)
 
-# print(model.labels_)
+# seta uma coluna com os clusters e gera um csv
+dataFrame['cluster'] = model.labels_
 
-# plt.title('Hierarchical Clustering Dendrogram')
-# plot_dendrogram(model, labels=model.labels_)
-# plt.show()
+export_csv = dataFrame.to_csv (r'C:\Users\daniel.kock\Documents\DM\Data-Mining-Suicides-Clustering\clusters.csv', index = None, header=True)
+
+
