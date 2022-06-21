@@ -1,6 +1,6 @@
 apyori==1.1.1
 scikit-learn==0.21.1
 matplotlib==3.1.0
-numpy==1.16.3
+numpy==1.22.0
 pandas==0.24.2
 gmplot==1.2.0
